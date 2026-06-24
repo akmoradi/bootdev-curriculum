@@ -546,14 +546,18 @@ Red Dragon breathes fire at 3/3 with range 2
 **Copying a List**
 To get a new copy of a list, use the copy() method. If you just do new_list = old_list, your new variable will just be a reference to the original list... which is not what we want.
 
+```Python
 nums: list[int] = [4, 3, 2, 1]
 nums_copy: list[int] = nums.copy()
 - # nums_copy is [4, 3, 2, 1]
+```
 
 **Delete from a List**
+```Python
 fruits: list[str] = ["apple", "banana", "cherry", "kiwi"]
 del fruits[1]
 - # fruits is ["apple", "cherry", "kiwi"]
+```
 
 
 ```Python
