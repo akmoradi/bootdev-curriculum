@@ -515,19 +515,23 @@ Iterate over all the dragons and describe() each one in order.
 Iterate over all the dragons again and have each dragon breathe_fire at coordinate x=3, y=3. Pass in all the other dragons (not the one currently breathing fire) as the units parameter, so we can see if they get hit.
 Pass in the dragons in the same order as the original list, excluding the current dragon. For example, when Blue Dragon breathes fire, it should check to breathe fire on the other dragons in this order:
 
-Green Dragon
-Red Dragon
-Black Dragon
-Example Output
+1. Green Dragon
+1. Red Dragon
+1. Black Dragon
+
+##### Example Output
 When you describe the dragons, your output should look like this:
 
+```text
 Green Dragon is at 0/0
 Red Dragon is at 2/2
 Blue Dragon is at 4/3
 Black Dragon is at 5/-1
+```
 
 The output of the first dragon breathing fire should look like this:
 
+```text
 ====================================
 Green Dragon breathes fire at 3/3 with range 1
 ------------------------------------
@@ -536,6 +540,7 @@ Blue Dragon is hit by the fire
 ====================================
 Red Dragon breathes fire at 3/3 with range 2
 ------------------------------------
+```
 
 ##### Tips
 **Copying a List**
