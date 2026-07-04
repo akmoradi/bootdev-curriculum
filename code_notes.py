@@ -113,6 +113,87 @@ def convert_line(line: str) -> str:
     return line
 -----------------------------
 
+def remove_invalid_lines(document: str) -> str:
+    return "\n".join(filter(lambda line: not line.startswith("-"), document.split("\n")))
+
+-----------------------------
+
+def remove_invalid_lines(document: str) -> str:
+    return "\n".join(filter(lambda line: not line.startswith("-"), document.split("\n")))
+
+-----------------------------
+
+import functools
+
+def add(sum_so_far: int, x: int) -> int:
+    print(f"sum_so_far: {sum_so_far}, x: {x}")
+    return sum_so_far + x
+
+numbers: list[int] = [1, 2, 3, 4]
+sum: int = functools.reduce(add, numbers)
+# sum_so_far: 1, x: 2
+# sum_so_far: 3, x: 3
+# sum_so_far: 6, x: 4
+# 10 doesn't print, it's just the final result
+print(sum)
+# 10
+
+-----------------------------------
+
+import functools
+def add(sum_so_far: int, x: int) -> int:
+    print(f"sum_so_far: {sum_so_far}, x: {x}")
+    return sum_so_far + x
+
+numbers: list[int] = [1, 2, 3, 4]
+sum: int = functools.reduce(add, numbers)
+# sum_so_far: 1, x: 2
+# sum_so_far: 2, x: 3
+# sum_so_far: 3, x: 4
+# 10 doesn't print, it's just the final result
+print(sum)
+# 10
+
+----------------------------------
+
+a: list[int] = [1, 2, 3]
+b: list[int] = [4, 5, 6]
+
+c: list[tuple[int, int]] = list(zip(a, b))
+print(c)
+# [(1, 4), (2, 5), (3, 6)]
+
+-----------------------------------
+
+valid_formats: list[str] = [
+    "docx",
+    "pdf",
+    "txt",
+    "pptx",
+    "ppt",
+    "md",
+]
+
+# Don't edit above this line
+
+
+def pait_document_with_format(
+    doc_names: list[str], doc_formats: list[str]
+) -> list[tuple[str, str]]:
+    return list(filter(lambda x: x[1] in valid_formats, zip(doc_names, doc_formats)))
+
+--------------------------------------
+
+def restore_documents(originals: tuple[str, ...], backups: tuple[str, ...]) -> set[str]:
+    return set(
+        filter(
+            lambda doc: doc not doc.isdigit(),
+            map(lambda doc: doc.upper(), originals + backups)
+        )
+    )
+
+---------------------------------------
+
 
 
 
