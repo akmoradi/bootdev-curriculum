@@ -97,6 +97,25 @@ def convert_line(line: str) -> str:
 
 from collections.abc import Iterator
 
+def change_bullet_style(document: str) -> str:
+    lines_list = document.split("\n")
+    changed_lines: Iterator[str] = map(convert_line, lines_list)
+    return "\n".join(list(changed_lines))
+
+# Don't edit below this line
+
+def convert_line(line: str) -> str:
+    old_bullet = "-"
+    new_bullet = "*"
+    if len(line) > 0 and line[0] == old_bullet:
+        return new_bullet + line[1:]
+    return line
+
+
+-----------------------------
+
+from collections.abc import Iterator
+
 
 def change_bullet_style(document: str) -> str:
     lines_list = document.split("\n")
@@ -194,7 +213,23 @@ def restore_documents(originals: tuple[str, ...], backups: tuple[str, ...]) -> s
 
 ---------------------------------------
 
+from collections.abc import Iterator
 
+def change_bullet_style(document: str) -> str:
+    lines_list = document.split("\n")
+    changed_lines: Iterator[str] = map(convert_line, lines_list)
+    return "\n".join(list(changed_lines))
+
+# Don't chagne below this line
+
+def convert_line(line: str) -> str:
+    old_bullet = "-"
+    new_bullet = "*"
+    if len(line) > 0 and line[0] == old_bullet:
+        return new_bulle + line[1]
+    return line
+
+----------------------------------------
 
 
 
