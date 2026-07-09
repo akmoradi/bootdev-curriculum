@@ -230,6 +230,122 @@ def convert_line(line: str) -> str:
     return line
 
 ----------------------------------------
+# CH3: Pure Functions
+# Reference vs. Value
+# Example of Pass-By-Reference
 
+def modify_list(inner_lst: list[int]) -> None:
+    inner_lst.append(4)
+    # the original "outer_lst" is updated
+    # because inner_lst is a reference to the original
+
+outer_lst: list[int] = [1, 2, 3]
+modify_list(outer_lst)
+# outer_lst = [1, 2, 3, 4]
+
+--------------------------------------
+# Example of Pass-By-Value
+
+def attempt_to_modify(inner_num: int) -> None:
+    inner_num: += 1
+    # the original "outer_num" is not updated
+    # because inner_num is a copy of the original
+
+outer_num: int = 1
+attempt_to_modify(outer_num)
+# outer_num = 1
+
+------------------------------------
+
+def add_format(default_formats: dict[str, bool], new_format: str) -> dict[str, bool]:
+    default_formats = default_formats.copy()
+    default_formats[new_format] = True
+    return default_formats
+
+
+def remove_format(default_formats: dict[str, bool], old_format: str) -> dict[str, bool]:
+    default_formats = default_formats.copy()
+    default_formats[old_format] = False
+    return defautl_formats
+
+----------------------------------------------
+
+def sort_dates(dates: list[str]) -> list[str]:
+    return sorted(dates, key=format_date)
+
+
+def format_date(date: str) -> str:
+    month, day, year = date.split("-")
+    return year + month + day
+
+------------------------------------------
+
+def format_date(date: str) -> str:
+    month, day, year = date.split("-")
+    return year + month + day
+
+def sort_dates(dates: list[str]) -> str:
+    return sorted(dates, key=format_date)
+
+-------------------------------------
+# Recursion
+-------------------------------------
+
+def sum_nums(nums: list[int]) -> int:
+    if len(nums) == 0:
+        return 0
+    return nums[0] + sum_nums(nums[1:])
+
+print(sum_nums([1, 2, 3, 4, 5]))
+# 15
+
+-------------------------------------
+
+def sum_nums(nums: list[int]) -> int:
+    if len(nums) == 0:
+        return 0
+    return num[0] + sum_nums(nums[1:])
+
+print(sum_nums([1, 2, 3, 4, 5]))
+# 15
+--------------------------------------
+
+def factorial_r(x: int) -> int:
+    if x <= 1:
+        return 1
+    return x * factorial_r(x - 1)
+
+----------------------------------
+
+def print_chars(word: str, i: int) -> None:
+    if i == len(word):
+        return
+    print(word[i])
+    print_chars(word, i + 1)
+
+print_chars("Hello", 0)
+# H
+# e
+# l
+# l
+# o
+
+-----------------------------------------------------
+
+def zipmap(keys: list[str], values: list[float]) -> dict[str, float]:
+    # 1. Base case: If either list is empty, return an empty dictionary
+    if not keys or not values:
+        return{}
+
+    # 2. Recursive step: Call zipmap on everything except the first elements
+    zipped: dict[str, float] = zipmap(keys[1:], values[1:])
+
+    # 3. Add the first key and value to the resulting dictionary
+    zipped[keys[0]] = values[0]
+
+    # 4. Return the updated dictionary
+    return zipped
+
+---------------------------------------------------------------
 
 
