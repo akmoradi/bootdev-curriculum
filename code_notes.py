@@ -348,4 +348,59 @@ def zipmap(keys: list[str], values: list[float]) -> dict[str, float]:
 
 ---------------------------------------------------------------
 
+from collections.abc import Callable
+
+def multiply(x: int, y: int) -> int:
+    return x * y
+
+def add(x: int, y: int) -> int:
+    return x + y
+
+def self_math(math_func: Callable[[int, int], int]) -> Callable[[int], int]:
+    def inner_func(x: int) -> int:
+        return math_func(x, x)
+    return inner_func
+
+square_func: Callable[[int, int], int] = self_math(multiply)
+double_func: Callable[[int, int], int] = self_math(add)
+
+print(square_func(5))
+# prints 25
+
+print(double_func(5))
+# prints 10
+
+----------------------------------------------
+
+from collections.abc import Callable
+
+def doc_format_checker_and_converter(
+    conversion_function: Callable[[str], str], valid_fomats: list[str]
+) -> Callable[[str, str], str]:
+    def checker_and_converter(filename: str, content: str) -> str:
+        file_extension = filename.split(".")[-1]
+        if file_extension in valid_fomats:
+            return conversion_function(content)
+        else:
+            raise ValueError("invalid file format")
+
+    return checker_and_converter
+
+# Don't edit below this line
+
+# capitalize_content and reverse_content are 
+# "conversion functions" that will
+# be passed into our doc_format_checker_and_converter 
+# function by the tests
+
+
+def capitalize_content(content: str) -> str:
+    return content.upper()
+
+
+def reverse_content(content: str) -> str:
+    return content[::-1]
+
+---------------------------------------------------
+
 
