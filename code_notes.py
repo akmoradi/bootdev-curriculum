@@ -402,5 +402,56 @@ def reverse_content(content: str) -> str:
     return content[::-1]
 
 ---------------------------------------------------
+# Closures
+---------------------------------------------------
+
+from collections.abc import Callable
+
+def concatter() -> Callable[[str], str]:
+    doc: str = ""
+
+
+    def doc_builder(word: str) -> str:
+        # "nonlocal" tells Python to use the 'doc'
+        # variable from the enclosing scope
+        nonlocal doc
+        doc += word + " "
+        return doc
+
+    return doc_builder
+
+# save the returned doc_builder function
+# to the new function 'harry_potter_aggregator'
+harry_potter_aggregator: Callable[[str], str] = concatter()
+harry_potter_aggregator("Mr.")
+harry_potter_aggregator("and")
+harry_potter_aggregator("Mrs.")
+harry_potter_aggregator("Dursley")
+harry_potter_aggregator("of")
+harry_potter_aggregator("number")
+harry_potter_aggregator("four,")
+harry_potter_aggregator("Privet")
+
+print(harry_potter_aggregator("Drive"))
+# Mr. and Mrs. Dursley of number four, Privet Drive
+
+------------------------------------------------------------
+
+from collections.abc import Callable
+
+
+def word_count_aggregator() -> Callable[[str], int]:
+    count: int = 0
+
+    def word_counter(doc: str) -> int:
+        nonlocal count
+        num_doc_words = len(doc.split())
+        count += num_doc_words
+        # count += len(doc.split())
+        return count
+
+    return word_counter
+
+------------------------------------------
 
 

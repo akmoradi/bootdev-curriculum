@@ -5,6 +5,7 @@
 Functional programming is a style or paradigm of programming where we compose functions instead of mutating state (updating the value of variables).
     - Functional programming is more about declaring _what_ you want to happen rather than _how_ you want it to happen.
     - Imperative (or procedural) programming declares both the _what_ and the _how_.
+
 ##### Example of imperative code
 
 ```Python
@@ -19,12 +20,12 @@ car.clearn_windows()
 return clean_windows(add_gas(create_car()))
 ```
 
-The important distinction is that in the functional example, we never change the value of the car cariable, we just compose functions that return new values, with the outermost function, `clean_window` in this case, returning the final results. 
+The important distinction is that in the functional example, we never change the value of the car variable, we just compose functions that return new values, with the outermost function, `clean_window` in this case, returning the final results. 
 
 In this course, we're working on Doc2Doc, a command line tool for converting documents from one format to another. If you are familiar with Pandoc, the idea is similar. 
 
 ### Assignment
-Complete th `stylize_title` function. It should take a single string as input, and return a single string as output. The returned string should have both the title centered and a border added. 
+Complete the `stylize_title` function. It should take a single string as input, and return a single string as output. The returned string should have both the title centered and a border added. 
 
 - Use the provided functions `center_title` and `add_border`.
 - Center the title *before* adding the border.
@@ -82,11 +83,11 @@ ages: tuple[int, ...] = (16, 21, 30)
 more_ages: tuple[int, ...] = (80,)
 # all_ages is a brand new tuple
 all_ages: tuple[int, ...] = ages + more_ages
-# [16, 21, 30, 80]
+# (16, 21, 30, 80)
 
 # or we can even reassign the same variable to point to a new tuple
 ages = ages + more_ages
-# [16, 21, 30, 80]
+# (16, 21, 30, 80)
 ```
 
 The `...` in `tuple[int, ...]` means the tuple *can contain any number of* `int` values.
@@ -97,6 +98,10 @@ def add_prefix(document: str, documents: tuple[str, ...]) -> tuple[str, ...]:
     new_doc = prefix + document
     documents = documents + (new_doc,)
     return documents
+
+# Result:
+# ("go", "python", "java", "javascript")
+# ("0. go", "1. python", "2. java", "3. javascript")
 ```
 
 ### Declarative vs imperative programming
