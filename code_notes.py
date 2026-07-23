@@ -453,5 +453,81 @@ def word_count_aggregator() -> Callable[[str], int]:
     return word_counter
 
 ------------------------------------------
+Currying
+-------------------------
+
+def sum(a: int, b: int) -> int:
+    return a + b
+
+print(sum(1, 2))
+# prints 3
+----------------
+# The same thing curried:
+-------------------------
+from collections.abc import Callable
+
+def sum(a: int) -> Callable[[int], int]:
+    def inner_sum(b: int) -> int:
+        return a + b
+    return inner_sum
+
+print(sum(1)(2))
+# prints 3
+
+-----------------------------
+# The sum function only takes a single input, a. It returns
+# a new function that takes a single input, b.
+# This new function, when called with a value of b,
+# will return the sum of a and b.
+-----------------------------
+# A "normal" 3-argument function:
+box_volume(3, 4, 5)
+
+# A "curried" series of functions that does the same thing:
+box_volume(3)(4)(5)
+-----------------------------
+final_volume: int = box_colume(3, 4, 5)
+print(final_volume)
+# 60
+-----------
+final_volume: int = box_volume(3)(4)(5)
+print(final_volume)
+# 60
+-----------------------------
+with_length_3 = box_volume(3)
+with_length_3_width_4 = with_length_3(4)
+final_volume: int = with_length3_with_4(5)
+print(final_volume)
+# 60
+--------------------------------
+from collections.abc import Callable
+
+def box_volume(length: int) -> Callable[[int], Callable[[int], int]]:
+    def box_volume_with_len(width: int) -> Callable[[int], int]:
+        def box_volume_with_len_width(height: int) -> int:
+            return length * width * height
+        return box_volume_with_len_width
+    return box_volume_with_len
+--------------------------------
+
+from collections.abc import Callable
+
+
+def lines_with_sequence(char: str) -> Callable[[int], Callable[[str], int]]:
+    def with_char(length: int) -> Callable[[str], int]:
+        sequence = char * length
+        def with_length(doc: str) -> int:
+            count: int = 0
+            for line in doc.split("\n"):
+                if sequence in line:
+                    count += 1
+                return count
+        return with_length
+    return with_char
+
+----------------------------------------
+
+
+
 
 
